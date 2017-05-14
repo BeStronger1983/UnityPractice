@@ -11,8 +11,13 @@ public class GameController : MonoBehaviour {
 	public float startWait;
 	public float waitWait;
 
+	public GUIText scoreText;
+	private int score;
+
 	// Use this for initialization
 	void Start () {
+		score = 0;
+		UpdateScore ();
 		StartCoroutine( SpawnWaves () );
 	}
 	
@@ -35,5 +40,16 @@ public class GameController : MonoBehaviour {
 			}
 			yield return new WaitForSeconds (waitWait);
 		}
+	}
+
+	public void AddScore (int newScoreValue)
+	{
+		score += newScoreValue;
+		UpdateScore ();
+	}
+
+	void UpdateScore ()
+	{
+		scoreText.text = "Score: " + score;
 	}
 }
